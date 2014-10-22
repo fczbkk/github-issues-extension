@@ -1,0 +1,26 @@
+// hide label assignment messages in GitHub's issues
+.hide-label-changes {
+  .discussion-item-labeled,
+  .discussion-item-unlabeled
+    {display: none;}
+}
+
+
+// hide reassignments
+.hide-assignment-changes {
+  .discussion-item-assigned,
+  .discussion-item-unassigned
+    {display: none;}
+}
+
+// because fuck emoji, that's why
+.hide-emoji {
+  .emoji
+    {display: none;}
+}
+
+// hide comments that only contain '+1'
+.hide-plus-one-comments {
+  .plus-one-comment
+    {display: none;}
+}

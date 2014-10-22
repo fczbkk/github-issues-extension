@@ -1,0 +1,10 @@
+{
+  "name": "github-issues-extension",
+  "title": "GitHub issues extension",
+  "id": "github-issues-extension@fczbkk.com",
+  "description": "Browser extension that adds handy tweaks for issues at GitHub.",
+  "author": "Riki Fridrich <riki@fczbkk.com> (http://fczbkk.com/)",
+  "license": "UNLICENSE",
+  "version": "0.1.0",
+  "fullName": "GitHub issues extension"
+}

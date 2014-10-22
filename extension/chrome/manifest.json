@@ -1,0 +1,26 @@
+{
+  "name": "GitHub Issues",
+  "version": "0.1.0",
+  "manifest_version": 2,
+  "description": "Browser extension that adds handy tweaks for issues at GitHub.",
+  "icons": {
+    "16": "img/icon-16.png",
+    "48": "img/icon-48.png",
+    "128": "img/icon-128.png"
+  },
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.github.com/*/issues/*"
+      ],
+      "js": ["content.js"],
+      "css": ["content.css"]
+    }
+  ]
+}
