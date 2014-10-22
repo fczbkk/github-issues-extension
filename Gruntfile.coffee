@@ -126,6 +126,6 @@ module.exports = (grunt) ->
     grunt.task.run [
       'dev'
       "bump:#{target}"
-      'mozilla-cfx-xpi'
+      # 'mozilla-cfx-xpi'
       'compress'
     ]
