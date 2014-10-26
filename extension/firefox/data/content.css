@@ -1,0 +1,14 @@
+.hide-label-changes .discussion-item-labeled,
+.hide-label-changes .discussion-item-unlabeled {
+  display: none;
+}
+.hide-assignment-changes .discussion-item-assigned,
+.hide-assignment-changes .discussion-item-unassigned {
+  display: none;
+}
+.hide-emoji .emoji {
+  display: none;
+}
+.hide-plus-one-comments .plus-one-comment {
+  display: none;
+}

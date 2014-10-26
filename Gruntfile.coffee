@@ -13,9 +13,15 @@ module.exports = (grunt) ->
           join: true
         files:
           # Firefox
-          'extension/firefox/lib/main.js' : [
+          'extension/firefox/index.js' : [
             'src/coffee/general/utilities.coffee'
-            'src/coffee/firefox/main.coffee'
+            'src/coffee/firefox/index.coffee'
+          ]
+          'extension/firefox/data/content.js' : [
+            'src/coffee/general/add-sidebar-item.coffee'
+            'src/coffee/general/hide-features.coffee'
+            'src/coffee/general/plus-one.coffee'
+            'src/coffee/firefox/content.coffee'
           ]
           # Chrome
           'extension/chrome/background.js' : [
@@ -27,6 +33,11 @@ module.exports = (grunt) ->
             'src/coffee/general/hide-features.coffee'
             'src/coffee/general/plus-one.coffee'
             'src/coffee/chrome/content.coffee'
+          ]
+      test:
+        files:
+          'extension/firefox/test/test-index.js': [
+            'test/firefox/index.spec.coffee'
           ]
 
     watch:
@@ -41,6 +52,9 @@ module.exports = (grunt) ->
       icons:
         files: ['src/img/icon.png']
         tasks: ['responsive_images']
+      test:
+        files: ['test/**/*.coffee']
+        tasks: ['coffee:test']
 
 
     'mozilla-addon-sdk':
@@ -99,17 +113,26 @@ module.exports = (grunt) ->
       chrome:
         options:
           sizes: [
-            {width: 16},
-            {width: 48},
+            {width: 16}
+            {width: 48}
             {width: 128}
           ]
         files:
           'extension/chrome/img/icon.png': 'src/img/icon.png'
+      firefox:
+        options:
+          sizes: [
+            {width: 48}
+            {width: 64}
+          ]
+        files:
+          'extension/firefox/img/icon.png': 'src/img/icon.png'
 
     less:
       default:
         files:
           'extension/chrome/content.css': 'src/less/content.less'
+          'extension/firefox/data/content.css': 'src/less/content.less'
 
   require('load-grunt-tasks') grunt
 
