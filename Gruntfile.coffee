@@ -136,6 +136,10 @@ module.exports = (grunt) ->
           'extension/chrome/content.css': 'src/less/content.less'
           'extension/firefox/data/content.css': 'src/less/content.less'
 
+    changelog:
+      options: {}
+
+
   require('load-grunt-tasks') grunt
 
   grunt.registerTask 'default', [
@@ -147,10 +151,16 @@ module.exports = (grunt) ->
     'coffee'
   ]
 
-  grunt.registerTask 'build', (target = 'patch') ->
+
+  # Constructs the code, runs tests and if everyting is OK, creates a minified
+  # version ready for production. This task is intended to be run manually.
+  grunt.registerTask 'build', 'Bumps version and builds JS.', (version_type) ->
+    version_type = 'patch' unless version_type in ['patch', 'minor', 'major']
     grunt.task.run [
+      "bump-only:#{version_type}"
       'dev'
-      "bump:#{target}"
-      # 'mozilla-cfx-xpi'
+      'mozilla-cfx-xpi:stable'
       'compress'
+      'changelog'
+      'bump-commit'
     ]
