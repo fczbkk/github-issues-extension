@@ -18,6 +18,7 @@ module.exports = (grunt) ->
             'src/coffee/firefox/index.coffee'
           ]
           'extension/firefox/data/content.js' : [
+            'src/coffee/general/utilities.coffee'
             'src/coffee/general/add-sidebar-item.coffee'
             'src/coffee/general/hide-features.coffee'
             'src/coffee/general/plus-one.coffee'
@@ -29,6 +30,7 @@ module.exports = (grunt) ->
             'src/coffee/chrome/background.coffee'
           ]
           'extension/chrome/content.js' : [
+            'src/coffee/general/utilities.coffee'
             'src/coffee/general/add-sidebar-item.coffee'
             'src/coffee/general/hide-features.coffee'
             'src/coffee/general/plus-one.coffee'

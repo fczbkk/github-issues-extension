@@ -32,15 +32,22 @@
 
   # Constructs HTML code for user icon.
   getUserIcon = (user = {}) ->
-    "
-      <a href='#{user.url}' class='participant-avatar'><img
-        alt='#{user.name}'
-        height='20'
-        width='20'
-        src='https://avatars0.githubusercontent.com/u/#{user.id}?v=2&s=40'
-        class='avatar'
-      /></a>
-    "
+    icon = createElement 'img', {
+      alt: user.name
+      width: '20'
+      height: '20'
+      class: 'avatar'
+      src: "https://avatars0.githubusercontent.com/u/#{user.id}?v=2&s=40"
+    }
+
+    link = createElement 'a', {
+      href: user.url
+      class: 'participant-avatar'
+    }
+
+    link.appendChild icon
+
+    link
 
 
   # Loop for walking through comment nodes and getting data about +1 votes.
@@ -61,13 +68,12 @@
   if plus_one_count > 0
 
     # Add list of people who +1'd this issue to the sidebar.
-    sidebar_title = "+1 (#{plus_one_count}&times;)"
-    sidebar_content = (
-      (getUserIcon participant) for id, participant of participants
-    ).join ''
+    sidebar_content = document.createDocumentFragment()
+    for id, participant of participants
+      sidebar_content.appendChild getUserIcon participant
 
     addSidebarItem(
-      sidebar_title
+      "+1 (#{plus_one_count}×)"
       sidebar_content
       'participation'
       'participation-avatars'
