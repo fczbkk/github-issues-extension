@@ -19,7 +19,8 @@
     });
   };
 
-  require('sdk/test'.run(exports));
+  require('sdk/test').run(exports);
+
 
   /*
   var main = require("../");
@@ -41,7 +42,6 @@
   };
   
   require("sdk/test").run(exports);
-  */
-
+   */
 
 }).call(this);

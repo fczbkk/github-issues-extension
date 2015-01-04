@@ -77,9 +77,9 @@ module.exports = (grunt) ->
 
 
     'mozilla-addon-sdk':
-      '1_15':
+      '1_17':
         options:
-          revision: '1.15'
+          revision: '1.17'
       master:
         options:
           revision: 'master'
@@ -88,7 +88,7 @@ module.exports = (grunt) ->
     'mozilla-cfx-xpi':
       stable:
         options:
-          'mozilla-addon-sdk': '1_15'
+          'mozilla-addon-sdk': '1_17'
           extension_dir: 'extension/firefox'
           dist_dir: 'build/firefox/stable'
       experimental:
@@ -100,7 +100,7 @@ module.exports = (grunt) ->
     'mozilla-cfx':
       run_stable:
         options:
-          'mozilla-addon-sdk': '1_15'
+          'mozilla-addon-sdk': '1_17'
           extension_dir: 'extension/firefox'
           command: 'run'
       run_experimental:
