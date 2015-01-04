@@ -1,6 +1,6 @@
 {
   "name": "github-issues-extension",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "title": "GitHub issues extension",
   "description": "Browser extension that adds handy tweaks for issues at GitHub.",
   "scripts": {
