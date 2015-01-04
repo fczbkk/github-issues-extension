@@ -14,27 +14,41 @@ module.exports = (grunt) ->
         files:
           # Firefox
           'extension/firefox/index.js' : [
-            'src/coffee/general/utilities.coffee'
             'src/coffee/firefox/index.coffee'
           ]
           'extension/firefox/data/content.js' : [
             'src/coffee/general/utilities.coffee'
+            'src/coffee/firefox/utilities.coffee'
+            'src/coffee/firefox/content.coffee'
             'src/coffee/general/add-sidebar-item.coffee'
             'src/coffee/general/hide-features.coffee'
             'src/coffee/general/plus-one.coffee'
-            'src/coffee/firefox/content.coffee'
+            'src/coffee/general/emoji.coffee'
+          ]
+          'extension/firefox/data/options.js' : [
+            'src/coffee/general/utilities.coffee'
+            'src/coffee/firefox/utilities.coffee'
+            'src/coffee/firefox/options.coffee'
+            'src/coffee/general/options.coffee'
           ]
           # Chrome
           'extension/chrome/background.js' : [
-            'src/coffee/general/utilities.coffee'
             'src/coffee/chrome/background.coffee'
           ]
           'extension/chrome/content.js' : [
             'src/coffee/general/utilities.coffee'
+            'src/coffee/chrome/utilities.coffee'
+            'src/coffee/chrome/content.coffee'
             'src/coffee/general/add-sidebar-item.coffee'
             'src/coffee/general/hide-features.coffee'
+            'src/coffee/general/emoji.coffee'
             'src/coffee/general/plus-one.coffee'
-            'src/coffee/chrome/content.coffee'
+          ]
+          'extension/chrome/options.js' : [
+            'src/coffee/general/utilities.coffee'
+            'src/coffee/chrome/utilities.coffee'
+            'src/coffee/chrome/options.coffee'
+            'src/coffee/general/options.coffee'
           ]
       test:
         files:
@@ -51,6 +65,9 @@ module.exports = (grunt) ->
       less:
         files: ['src/less/**/*.less']
         tasks: ['less']
+      jade:
+        files: ['src/jade/**/*.jade']
+        tasks: ['jade']
       icons:
         files: ['src/img/icon.png']
         tasks: ['responsive_images']
@@ -134,7 +151,15 @@ module.exports = (grunt) ->
       default:
         files:
           'extension/chrome/content.css': 'src/less/content.less'
+          'extension/chrome/options.css': 'src/less/options.less'
           'extension/firefox/data/content.css': 'src/less/content.less'
+          'extension/firefox/data/options.css': 'src/less/options.less'
+
+    jade:
+      default:
+        files:
+          'extension/chrome/options.html': 'src/jade/options.jade'
+          'extension/firefox/data/options.html': 'src/jade/options.jade'
 
     changelog:
       options: {}
@@ -149,6 +174,8 @@ module.exports = (grunt) ->
   grunt.registerTask 'dev', [
     'coffeelint'
     'coffee'
+    'less'
+    'jade'
   ]
 
 

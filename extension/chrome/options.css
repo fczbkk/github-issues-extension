@@ -1,0 +1,45 @@
+body {
+  background: #fff;
+  color: #333;
+  margin: 0;
+  padding: 3em;
+  font-size: 14px;
+  font-family: sans-serif;
+  line-height: 24.5px;
+  max-width: 560px;
+}
+h1 {
+  font-weight: normal;
+  font-size: 28px;
+  margin-top: 28px;
+  margin-bottom: 14px;
+}
+h2 {
+  font-weight: normal;
+  font-size: 21px;
+  margin-top: 35px;
+  margin-bottom: 14px;
+}
+ul.options {
+  list-style: none;
+  margin: 14px 0;
+  padding: 0;
+}
+ul.options li {
+  margin: 7px 0;
+  padding-left: 28px;
+  position: relative;
+}
+ul.options li input {
+  position: absolute;
+  left: 0;
+  top: 3.5px;
+}
+ul.options li p {
+  margin: 0;
+}
+.note {
+  font-size: 10.5px;
+  line-height: 14px;
+  color: #999;
+}

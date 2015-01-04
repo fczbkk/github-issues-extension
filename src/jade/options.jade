@@ -1,0 +1,61 @@
+extends ./layout.jade
+
+
+block title
+  | GitHub Issues options
+
+
+block content
+
+  mixin checkbox(group, value, text)
+    label
+      input(type='checkbox', id='#{group}#{value}')
+      | #{text}
+        
+  mixin radio(group, value, text)
+    label
+      input(type='radio', name=group, value=value)
+      | #{text}
+        
+
+  h1 GitHub Issues options
+  
+  h2 Issue updates
+  
+  ul.options
+    
+    li
+      p: +checkbox('hide', 'Changes', 'Hide label changes')
+      p.note Hides all changes in labels associated with the issue. This just clutters the screen, most of the time. What's important is list of current labels associated with the issue.
+      
+    li
+      p: +checkbox('hide', 'Reassignments', 'Hide reassignments')
+      p.note Hides all info about issue being assigned to different person. Most of the time, the important information is to whom is the issue assigned right now.
+  
+  
+  h2 Emojis
+  
+  p.note Some people love emojis. Some people hate them. If you hate them as much as me, here's your chance to get rid of them.
+  
+  ul.options
+    li: +radio('emoji', 'keep', 'Keep them as they are')
+    li: +radio('emoji', 'hide', 'Hide them all')
+    li: +radio('emoji', 'text', 'Show them as text')
+  
+  
+  h2 +1 comments
+  
+  ul.options
+    li
+      p: +checkbox('plusOne', 'ShowSummary', 'Show summary in sidebar')
+      p.note Will show a count of all +1 comments in the sidebar, along with a list of people who voted.
+    li
+      p: +checkbox('plusOne', 'ThumbsUp', 'Treat "thumbs up" emojis as +1')
+      p.note Some people us "thumbs up" emoji instead of +1. Check this to include these emojis in the +1 summary.
+    li
+      p: +checkbox('plusOne', 'Hide', 'Hide +1 comments')
+      p.note If you enabled the +1 summary in the sidebar (see above), there's no reason to display the comments that contain only +1. The comments with +1 and some other content will remain visible.
+  
+  
+  // h2 Default issue content  
+  // p As _____, I want _____, so that _____.

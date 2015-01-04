@@ -1,4 +1,14 @@
-document.body.classList.add 'hide-label-changes'
-document.body.classList.add 'hide-assignment-changes'
-document.body.classList.add 'hide-emoji'
-document.body.classList.add 'hide-plus-one-comments'
+hide_options =
+  hideChanges: true
+  hideReassignments: true
+  plusOneHide: true
+
+getOptions hide_options, (options) ->
+
+  option_pairs =
+    hideChanges: 'hide-label-changes'
+    hideReassignments: 'hide-assignment-changes'
+    plusOneHide: 'hide-plus-one-comments'
+
+  for key, val of option_pairs
+    document.body.classList.add val if options[key] is true

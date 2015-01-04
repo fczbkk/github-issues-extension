@@ -1,5 +1,5 @@
 (function() {
-  var addSidebarItem, createElement;
+  var addSidebarItem, createElement, getOptions, hide_options, plus_one_options;
 
   createElement = function(tag, attributes, content) {
     var element, key, val;
@@ -21,6 +21,19 @@
       element.appendChild(document.createTextNode(content));
     }
     return element;
+  };
+
+  getOptions = function(list, callback) {
+    if (list == null) {
+      list = null;
+    }
+    if (callback == null) {
+      callback = function() {};
+    }
+    self.port.emit('getOptions', list);
+    return self.port.on('receiveOptions', function(options) {
+      return callback(options);
+    });
   };
 
   addSidebarItem = function(title, content, wrapper_class, content_class) {
@@ -57,28 +70,82 @@
     return sidebar_element.appendChild(element);
   };
 
-  document.body.classList.add('hide-label-changes');
+  hide_options = {
+    hideChanges: true,
+    hideReassignments: true,
+    plusOneHide: true
+  };
 
-  document.body.classList.add('hide-assignment-changes');
-
-  document.body.classList.add('hide-emoji');
-
-  document.body.classList.add('hide-plus-one-comments');
-
-  (function() {
-    var content, element, getParticipantInfo, getUserIcon, id, onlyContains, participant, participants, plus_one_count, sidebar_content, startsWith, _i, _len, _ref;
-    participants = {};
-    startsWith = function(content) {
-      if (content == null) {
-        content = '';
-      }
-      return /^\s*\+1/.test(content);
+  getOptions(hide_options, function(options) {
+    var key, option_pairs, val, _results;
+    option_pairs = {
+      hideChanges: 'hide-label-changes',
+      hideReassignments: 'hide-assignment-changes',
+      plusOneHide: 'hide-plus-one-comments'
     };
-    onlyContains = function(content) {
-      if (content == null) {
-        content = '';
+    _results = [];
+    for (key in option_pairs) {
+      val = option_pairs[key];
+      if (options[key] === true) {
+        _results.push(document.body.classList.add(val));
+      } else {
+        _results.push(void 0);
       }
-      return /^\s*\+1.{0,1}\s*$/.test(content);
+    }
+    return _results;
+  });
+
+  plus_one_options = {
+    plusOneShowSummary: true,
+    plusOneThumbsUp: true,
+    plusOneHide: true
+  };
+
+  getOptions(plus_one_options, function(options) {
+    var content_element, element, getParticipantInfo, getUserIcon, id, isThumbsUpImg, onlyContains, participant, participants, plus_one_count, sidebar_content, startsWithPlusOne, _i, _len, _ref;
+    participants = {};
+    isThumbsUpImg = function(node) {
+      var result;
+      result = false;
+      if ((node != null ? node.tagName : void 0) === 'IMG') {
+        if (node.getAttribute('class') === 'emoji') {
+          if (node.getAttribute('alt') === ':+1:') {
+            result = true;
+          }
+        }
+      }
+      return result;
+    };
+    startsWithPlusOne = function(element) {
+      var content, result;
+      result = false;
+      content = element.textContent;
+      if (/^\s*\+1/.test(element.textContent)) {
+        result = true;
+      }
+      if (options.plusOneThumbsUp) {
+        if (isThumbsUpImg(element.querySelector('p').firstChild)) {
+          result = true;
+        }
+      }
+      return result;
+    };
+    onlyContains = function(element) {
+      var children, contains_no_text, content, paragraphs, result;
+      result = false;
+      content = element.textContent;
+      /^\s*\+1.{0,1}\s*$/.test(content);
+      if (options.plusOneThumbsUp) {
+        paragraphs = element.querySelectorAll('p');
+        if (paragraphs.length === 1) {
+          children = paragraphs[0].childNodes;
+          contains_no_text = /^\s*$/.exec(paragraphs[0].textContent);
+          if (contains_no_text && isThumbsUpImg(children[0])) {
+            result = true;
+          }
+        }
+      }
+      return result;
     };
     getParticipantInfo = function(node) {
       var avatar, link;
@@ -112,24 +179,47 @@
     _ref = document.querySelectorAll('.timeline-comment-wrapper');
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       element = _ref[_i];
-      content = element.querySelector('.comment-body').textContent;
-      if (startsWith(content)) {
+      content_element = element.querySelector('.comment-body');
+      if (startsWithPlusOne(content_element)) {
         participant = getParticipantInfo(element);
         participants[participant.id] = participant;
-        if (onlyContains(content)) {
-          element.classList.add('plus-one-comment');
+      }
+      if (onlyContains(content_element)) {
+        element.classList.add('plus-one-comment');
+      }
+    }
+    if (options.plusOneShowSummary) {
+      plus_one_count = Object.keys(participants).length;
+      if (plus_one_count > 0) {
+        sidebar_content = document.createDocumentFragment();
+        for (id in participants) {
+          participant = participants[id];
+          sidebar_content.appendChild(getUserIcon(participant));
         }
+        return addSidebarItem("+1 (" + plus_one_count + "×)", sidebar_content, 'participation', 'participation-avatars');
       }
     }
-    plus_one_count = Object.keys(participants).length;
-    if (plus_one_count > 0) {
-      sidebar_content = document.createDocumentFragment();
-      for (id in participants) {
-        participant = participants[id];
-        sidebar_content.appendChild(getUserIcon(participant));
-      }
-      return addSidebarItem("+1 (" + plus_one_count + "×)", sidebar_content, 'participation', 'participation-avatars');
+  });
+
+  getOptions({
+    emoji: 'hide'
+  }, function(options) {
+    var elm, replacement_node, replacement_text, _i, _len, _ref, _results;
+    switch (options.emoji) {
+      case 'hide':
+        return document.body.classList.add('hide-emoji');
+      case 'text':
+        _ref = document.querySelectorAll('img.emoji');
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          elm = _ref[_i];
+          replacement_text = elm.getAttribute('alt').replace(/\:/g, '');
+          replacement_node = document.createTextNode(replacement_text);
+          elm.parentNode.insertBefore(replacement_node, elm);
+          _results.push(elm.parentNode.removeChild(elm));
+        }
+        return _results;
     }
-  })();
+  });
 
 }).call(this);

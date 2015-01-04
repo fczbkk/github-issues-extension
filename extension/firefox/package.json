@@ -12,5 +12,63 @@
   },
   "license": "UNLICENSE",
   "icon": "img/icon-48.png",
-  "icon64": "img/icon-64.png"
+  "icon64": "img/icon-64.png",
+  "preferences": [
+    {
+      "title": "Hide label changes",
+      "description": "Hides all changes in labels associated with the issue. This just clutters the screen, most of the time. What's important is list of current labels associated with the issue.",
+      "name": "hideChanges",
+      "type": "bool",
+      "value": true
+    },
+    {
+      "title": "Hide reassignments",
+      "description": "Hides all info about issue being assigned to different person. Most of the time, the important information is to whom is the issue assigned right now.",
+      "name": "hideReassignments",
+      "type": "bool",
+      "value": true
+    },
+    {
+      "title": "Show summary of +1 in sidebar",
+      "description": "Will show a count of all +1 comments in the sidebar, along with a list of people who voted.",
+      "name": "plusOneShowSummary",
+      "type": "bool",
+      "value": true
+    },
+    {
+      "title": "Treat \"thumbs up\" emojis as +1",
+      "description": "Some people us \"thumbs up\" emoji instead of +1. Check this to include these emojis in the +1 summary.",
+      "name": "plusOneThumbsUp",
+      "type": "bool",
+      "value": true
+    },
+    {
+      "title": "Hide +1 comments",
+      "description": "If you enabled the +1 summary in the sidebar (see above), there's no reason to display the comments that contain only +1. The comments with +1 and some other content will remain visible.",
+      "name": "plusOneHide",
+      "type": "bool",
+      "value": true
+    },
+    {
+      "title": "Emojis",
+      "description": "Some people love emojis. Some people hate them. If you hate them as much as me, here's your chance to get rid of them.",
+      "name": "emoji",
+      "type": "radio",
+      "value": "keep",
+      "options": [
+        {
+          "label": "Keep them as they are",
+          "value": "keep"
+        },
+        {
+          "label": "Hide them all",
+          "value": "hide"
+        },
+        {
+          "label": "Show them as text",
+          "value": "text"
+        }
+      ]
+    }
+  ]
 }
