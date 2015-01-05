@@ -76,39 +76,6 @@ module.exports = (grunt) ->
         tasks: ['coffee:test']
 
 
-    'mozilla-addon-sdk':
-      '1_17':
-        options:
-          revision: '1.17'
-      master:
-        options:
-          revision: 'master'
-          github: true
-
-    'mozilla-cfx-xpi':
-      stable:
-        options:
-          'mozilla-addon-sdk': '1_17'
-          extension_dir: 'extension/firefox'
-          dist_dir: 'build/firefox/stable'
-      experimental:
-        options:
-          'mozilla-addon-sdk': 'master'
-          extension_dir: 'extension/firefox'
-          dist_dir: 'build/firefox/experimental'
-
-    'mozilla-cfx':
-      run_stable:
-        options:
-          'mozilla-addon-sdk': '1_17'
-          extension_dir: 'extension/firefox'
-          command: 'run'
-      run_experimental:
-        options:
-          'mozilla-addon-sdk': 'master'
-          extension_dir: 'extension/firefox'
-          command: 'run'
-
     compress:
       chrome:
         options:
@@ -186,7 +153,7 @@ module.exports = (grunt) ->
     grunt.task.run [
       "bump-only:#{version_type}"
       'dev'
-      'mozilla-cfx-xpi:stable'
+      # you have to generate XPI manually via JPM
       'compress'
       'changelog'
       'bump-commit'
