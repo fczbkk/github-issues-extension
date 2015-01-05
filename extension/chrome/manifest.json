@@ -1,6 +1,6 @@
 {
   "name": "GitHub Issues",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "manifest_version": 2,
   "description": "Browser extension that adds handy tweaks for issues at GitHub.",
   "icons": {

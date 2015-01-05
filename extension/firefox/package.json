@@ -2,7 +2,7 @@
   "title": "GitHub issues extension",
   "name": "github-issues-extension",
   "id": "github-issues-extension@fczbkk.com",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Browser extension that adds handy tweaks for issues at GitHub.",
   "main": "index.js",
   "author": "Riki Fridrich (https://github.com/fczbkk/)",
