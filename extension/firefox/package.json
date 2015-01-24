@@ -7,8 +7,7 @@
   "main": "index.js",
   "author": "Riki Fridrich (https://github.com/fczbkk/)",
   "engines": {
-    "firefox": ">=33.0a1",
-    "fennec": ">=33.0a1"
+    "firefox": ">=33.0a1 <=38.*"
   },
   "license": "UNLICENSE",
   "icon": "img/icon-48.png",
