@@ -124,6 +124,10 @@ module.exports = (grunt) ->
 
     jade:
       default:
+        options:
+          # Mozilla reviewers have a problem with minified HTML code. They think
+          # it is obfuscated.
+          pretty: true
         files:
           'extension/chrome/options.html': 'src/jade/options.jade'
           'extension/firefox/data/options.html': 'src/jade/options.jade'
