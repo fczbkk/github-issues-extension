@@ -6,6 +6,10 @@
 .hide-assignment-changes .discussion-item-unassigned {
   display: none;
 }
+.hide-milestone-changes .discussion-item-milestoned,
+.hide-milestone-changes .discussion-item-demilestoned {
+  display: none;
+}
 .hide-emoji .emoji {
   display: none;
 }

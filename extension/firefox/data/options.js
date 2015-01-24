@@ -41,6 +41,7 @@
     defaults = {
       hideChanges: true,
       hideReassignments: true,
+      hideMilestones: true,
       plusOneShowSummary: true,
       plusOneThumbsUp: true,
       plusOneHide: true,
@@ -48,7 +49,7 @@
     };
     return getOptions(defaults, function(options) {
       var checkboxes, elm, item, _fn, _i, _j, _len, _len1, _ref, _results;
-      checkboxes = ['hideChanges', 'hideReassignments', 'plusOneShowSummary', 'plusOneThumbsUp', 'plusOneHide'];
+      checkboxes = ['hideChanges', 'hideReassignments', 'hideMilestones', 'plusOneShowSummary', 'plusOneThumbsUp', 'plusOneHide'];
       _fn = function(item) {
         return elm.addEventListener('change', function(event) {
           var target_element;

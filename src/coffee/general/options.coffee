@@ -4,6 +4,7 @@ window.addEventListener 'load', ->
   defaults =
     hideChanges: true
     hideReassignments: true
+    hideMilestones: true
     plusOneShowSummary: true
     plusOneThumbsUp: true
     plusOneHide: true
@@ -17,6 +18,7 @@ window.addEventListener 'load', ->
     checkboxes = [
       'hideChanges'
       'hideReassignments'
+      'hideMilestones'
       'plusOneShowSummary'
       'plusOneThumbsUp'
       'plusOneHide'

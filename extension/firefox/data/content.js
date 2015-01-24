@@ -81,6 +81,7 @@
     option_pairs = {
       hideChanges: 'hide-label-changes',
       hideReassignments: 'hide-assignment-changes',
+      hideMilestones: 'hide-milestone-changes',
       plusOneHide: 'hide-plus-one-comments'
     };
     _results = [];
