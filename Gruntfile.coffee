@@ -135,6 +135,11 @@ module.exports = (grunt) ->
     changelog:
       options: {}
 
+    jpm:
+      options:
+        src: 'extension/firefox'
+        xpi: 'build/firefox'
+
 
   require('load-grunt-tasks') grunt
 
@@ -157,7 +162,7 @@ module.exports = (grunt) ->
     grunt.task.run [
       "bump-only:#{version_type}"
       'dev'
-      # you have to generate XPI manually via JPM
+      'jpm:xpi'
       'compress'
       'changelog'
       'bump-commit'
