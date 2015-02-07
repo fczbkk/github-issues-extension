@@ -9,18 +9,18 @@
   "author": "Riki Fridrich <riki@fczbkk.com> (http://fczbkk.com/)",
   "devDependencies": {
     "grunt": "^0.4.5",
-    "grunt-bump": "0.0.16",
+    "grunt-bump": "0.1.0",
     "grunt-coffeelint": "~0.0.13",
     "grunt-contrib-coffee": "~0.12.0",
     "grunt-contrib-compress": "~0.13.0",
-    "grunt-contrib-jade": "^0.14.0",
-    "grunt-contrib-jasmine": "~0.8.1",
+    "grunt-contrib-jade": "^0.14.1",
+    "grunt-contrib-jasmine": "~0.8.2",
     "grunt-contrib-less": "^1.0.0",
     "grunt-contrib-watch": "~0.6.1",
     "grunt-conventional-changelog": "^1.1.0",
-    "grunt-jpm": "https://github.com/rpl/grunt-jpm/archive/0.1.0.tar.gz",
-    "grunt-responsive-images": "^0.1.4",
-    "load-grunt-tasks": "^2.0.0"
+    "grunt-jpm": "^0.1.0",
+    "grunt-responsive-images": "^0.1.6",
+    "load-grunt-tasks": "^3.1.0"
   },
   "repository": {
     "type": "git",
