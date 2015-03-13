@@ -1,3 +1,12 @@
+<a name="0.3.2"></a>
+### 0.3.2 (2015-03-13)
+
+
+#### Features
+
+* add support for pull requests ([70c80684](https://github.com/fczbkk/github-issues-extension/commit/70c806840b6c0366a53b0899ccd1da66ac75f20c))
+
+
 <a name="0.3.1"></a>
 ### 0.3.1 (2015-01-24)
 
