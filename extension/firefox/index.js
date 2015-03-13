@@ -7,7 +7,7 @@
 
   prefs = require('sdk/simple-prefs').prefs;
 
-  include_pattern = /.*:\/\/(.*\.)*github\.com\/.*\/issues\/.+/;
+  include_pattern = /.*:\/\/(.*\.)*github\.com\/.*\/(issues|pull)\/.+/;
 
   startListening = function(worker) {
     return worker.port.on('getOptions', function(list) {

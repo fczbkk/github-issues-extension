@@ -10,7 +10,7 @@ include_pattern = ///
   # any subdomain at github.com
   (.*\.)*github\.com/
   # issues in any project under any user
-  .*/issues/
+  .*/(issues|pull)/
   # issue detail
   .+
 ///
@@ -22,7 +22,7 @@ startListening = (worker) ->
 
   worker.port.on 'getOptions', (list = null) ->
     result = {}
-    
+
     if list
       result[key] = prefs[key] or val for key, val of list
     else
