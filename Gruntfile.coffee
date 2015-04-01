@@ -25,12 +25,6 @@ module.exports = (grunt) ->
             'src/coffee/general/plus-one.coffee'
             'src/coffee/general/emoji.coffee'
           ]
-          'extension/firefox/data/options.js' : [
-            'src/coffee/general/utilities.coffee'
-            'src/coffee/firefox/utilities.coffee'
-            'src/coffee/firefox/options.coffee'
-            'src/coffee/general/options.coffee'
-          ]
           # Chrome
           'extension/chrome/background.js' : [
             'src/coffee/chrome/background.coffee'
@@ -49,6 +43,9 @@ module.exports = (grunt) ->
             'src/coffee/chrome/utilities.coffee'
             'src/coffee/chrome/options.coffee'
             'src/coffee/general/options.coffee'
+          ]
+          'extension/chrome/settings.js' : [
+            'src/coffee/chrome/settings.coffee'
           ]
       test:
         files:
@@ -120,17 +117,11 @@ module.exports = (grunt) ->
           'extension/chrome/content.css': 'src/less/content.less'
           'extension/chrome/options.css': 'src/less/options.less'
           'extension/firefox/data/content.css': 'src/less/content.less'
-          'extension/firefox/data/options.css': 'src/less/options.less'
 
     jade:
       default:
-        options:
-          # Mozilla reviewers have a problem with minified HTML code. They think
-          # it is obfuscated.
-          pretty: true
         files:
           'extension/chrome/options.html': 'src/jade/options.jade'
-          'extension/firefox/data/options.html': 'src/jade/options.jade'
 
     changelog:
       options: {}

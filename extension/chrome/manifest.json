@@ -22,6 +22,12 @@
       ],
       "js": ["content.js"],
       "css": ["content.css"]
+    },
+    {
+      "matches": [
+        "*://*.github.com/settings/*"
+      ],
+      "js": ["settings.js"]
     }
   ],
   "options_page": "options.html",
@@ -31,5 +37,8 @@
   },
   "permissions": [
     "storage"
+  ],
+  "web_accessible_resources": [
+    "options.html"
   ]
 }

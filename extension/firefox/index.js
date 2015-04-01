@@ -1,5 +1,5 @@
 (function() {
-  var include_pattern, pageMod, prefs, self, startListening;
+  var include_pattern, pageMod, prefs, self, settings_pattern, startListening;
 
   self = require('sdk/self');
 
@@ -8,6 +8,8 @@
   prefs = require('sdk/simple-prefs').prefs;
 
   include_pattern = /.*:\/\/(.*\.)*github\.com\/.*\/(issues|pull)\/.+/;
+
+  settings_pattern = /.*:\/\/(.*\.)*github\.com\/settings\/.*/;
 
   startListening = function(worker) {
     return worker.port.on('getOptions', function(list) {
@@ -34,5 +36,15 @@
     contentStyleFile: self.data.url('content.css'),
     onAttach: startListening
   });
+
+  pageMod.PageMod({
+    include: settings_pattern,
+    contentScriptFile: self.data.url('settings.js'),
+    onAttach: function() {
+      return console.log('--- attached');
+    }
+  });
+
+  console.log('--- test');
 
 }).call(this);

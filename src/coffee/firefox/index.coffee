@@ -15,6 +15,17 @@ include_pattern = ///
   .+
 ///
 
+settings_pattern = ///
+  # any protocol
+  .*://
+  # any subdomain at github.com
+  (.*\.)*github\.com/
+  # settings section
+  settings/
+  # any subsection
+  .*
+///
+
 
 # communication between content script and main script
 # mainly used to retrieve options from preferences
@@ -36,3 +47,12 @@ pageMod.PageMod
   contentScriptFile: self.data.url 'content.js'
   contentStyleFile: self.data.url 'content.css'
   onAttach: startListening
+
+
+pageMod.PageMod
+  include: settings_pattern
+  contentScriptFile: self.data.url 'settings.js'
+  onAttach: ->
+    console.log '--- attached'
+
+console.log '--- test'
