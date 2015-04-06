@@ -1,7 +1,7 @@
 self = require 'sdk/self'
 pageMod = require 'sdk/page-mod'
 prefs = require('sdk/simple-prefs').prefs
-
+{open} = require 'sdk/preferences/utils'
 
 # e.g. 'https://github.com/fczbkk/github-issues-extension/issues/2'
 include_pattern = ///
@@ -41,6 +41,9 @@ startListening = (worker) ->
 
     worker.port.emit 'receiveOptions', result
 
+  worker.port.on 'openSettingsPage', ->
+    open {id: self.id}
+
 
 pageMod.PageMod
   include: include_pattern
@@ -52,7 +55,4 @@ pageMod.PageMod
 pageMod.PageMod
   include: settings_pattern
   contentScriptFile: self.data.url 'settings.js'
-  onAttach: ->
-    console.log '--- attached'
-
-console.log '--- test'
+  onAttach: startListening

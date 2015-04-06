@@ -1,5 +1,5 @@
 (function() {
-  var include_pattern, pageMod, prefs, self, settings_pattern, startListening;
+  var include_pattern, open, pageMod, prefs, self, settings_pattern, startListening;
 
   self = require('sdk/self');
 
@@ -7,12 +7,14 @@
 
   prefs = require('sdk/simple-prefs').prefs;
 
+  open = require('sdk/preferences/utils').open;
+
   include_pattern = /.*:\/\/(.*\.)*github\.com\/.*\/(issues|pull)\/.+/;
 
   settings_pattern = /.*:\/\/(.*\.)*github\.com\/settings\/.*/;
 
   startListening = function(worker) {
-    return worker.port.on('getOptions', function(list) {
+    worker.port.on('getOptions', function(list) {
       var key, result, val;
       if (list == null) {
         list = null;
@@ -28,6 +30,11 @@
       }
       return worker.port.emit('receiveOptions', result);
     });
+    return worker.port.on('openSettingsPage', function() {
+      return open({
+        id: self.id
+      });
+    });
   };
 
   pageMod.PageMod({
@@ -40,11 +47,7 @@
   pageMod.PageMod({
     include: settings_pattern,
     contentScriptFile: self.data.url('settings.js'),
-    onAttach: function() {
-      return console.log('--- attached');
-    }
+    onAttach: startListening
   });
-
-  console.log('--- test');
 
 }).call(this);

@@ -4,8 +4,10 @@
   getSettingsLink = function() {
     var element;
     element = constructSettingsLink();
-    element.href = chrome.extension.getURL('options.html');
-    element.target = 'github-extension-settings';
+    element.href = 'javascript:void(0);';
+    element.addEventListener('click', function() {
+      return self.port.emit('openSettingsPage');
+    });
     return element;
   };
 

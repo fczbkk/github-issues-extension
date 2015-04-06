@@ -25,6 +25,10 @@ module.exports = (grunt) ->
             'src/coffee/general/plus-one.coffee'
             'src/coffee/general/emoji.coffee'
           ]
+          'extension/firefox/data/settings.js' : [
+            'src/coffee/firefox/settings.coffee'
+            'src/coffee/general/settings.coffee'
+          ]
           # Chrome
           'extension/chrome/background.js' : [
             'src/coffee/chrome/background.coffee'
@@ -46,6 +50,7 @@ module.exports = (grunt) ->
           ]
           'extension/chrome/settings.js' : [
             'src/coffee/chrome/settings.coffee'
+            'src/coffee/general/settings.coffee'
           ]
       test:
         files:
