@@ -6,9 +6,7 @@ prefs = require('sdk/simple-prefs').prefs
 # e.g. 'https://github.com/fczbkk/github-issues-extension/issues/2'
 include_pattern = ///
   # any protocol
-  .*://
-  # any subdomain at github.com
-  (.*\.)*github\.com/
+  .*://github\.com/
   # issues in any project under any user
   .*/(issues|pull)/
   # issue detail
@@ -50,7 +48,6 @@ pageMod.PageMod
   contentScriptFile: self.data.url 'content.js'
   contentStyleFile: self.data.url 'content.css'
   onAttach: startListening
-
 
 pageMod.PageMod
   include: settings_pattern
