@@ -9,7 +9,7 @@
 
   open = require('sdk/preferences/utils').open;
 
-  include_pattern = /.*:\/\/(.*\.)*github\.com\/.*\/(issues|pull)\/.+/;
+  include_pattern = /.*:\/\/github\.com\/.*\/(issues|pull)\/.+/;
 
   settings_pattern = /.*:\/\/(.*\.)*github\.com\/settings\/.*/;
 

@@ -1,3 +1,12 @@
+<a name="0.3.3"></a>
+### 0.3.3 (2015-05-27)
+
+
+#### Bug Fixes
+
+* **Firefox:** mysterious crash at Amazon Web Services Console ([300c012e](https://github.com/fczbkk/github-issues-extension/commit/300c012e5386dce0bcf14a9721897ca888522e8b))
+
+
 <a name="0.3.2"></a>
 ### 0.3.2 (2015-03-13)
 
