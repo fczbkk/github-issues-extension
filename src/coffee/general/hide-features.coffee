@@ -1,6 +1,7 @@
 hide_options =
   hideChanges: true
   hideReassignments: true
+  hideMilestones: true
   plusOneHide: true
 
 getOptions hide_options, (options) ->

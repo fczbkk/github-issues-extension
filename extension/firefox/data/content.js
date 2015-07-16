@@ -73,6 +73,7 @@
   hide_options = {
     hideChanges: true,
     hideReassignments: true,
+    hideMilestones: true,
     plusOneHide: true
   };
 
